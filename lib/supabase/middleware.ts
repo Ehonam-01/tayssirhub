@@ -5,6 +5,7 @@ import type { Database } from "@/lib/types/database";
 const AUTH_PATHS = ["/login", "/signup"];
 const ONBOARDING_PATH = "/onboarding";
 const PORTAL_PATH = "/portal";
+const ADMIN_PATH = "/admin";
 
 function redirectTo(request: NextRequest, base: NextResponse, pathname: string) {
   const url = request.nextUrl.clone();
@@ -51,6 +52,7 @@ export async function updateSession(request: NextRequest) {
   const isAuthPath = AUTH_PATHS.some((p) => pathname.startsWith(p));
   const isOnboardingPath = pathname.startsWith(ONBOARDING_PATH);
   const isPortalPath = pathname.startsWith(PORTAL_PATH);
+  const isAdminPath = pathname.startsWith(ADMIN_PATH);
 
   // Le portail pèlerin gère sa propre garde d'accès page par page (public :
   // /portal/login, /portal/invite/*, /portal/auth/callback ; protégé :
@@ -58,6 +60,15 @@ export async function updateSession(request: NextRequest) {
   // logique d'onboarding staff ci-dessous, qui ne concerne que les comptes
   // d'agence.
   if (isPortalPath) {
+    return supabaseResponse;
+  }
+
+  // Même logique pour /admin : un super admin dédié peut n'avoir aucune
+  // agence (is_super_admin est indépendant de agency_id) — sans cette
+  // exemption il tomberait dans la redirection "pas d'agence -> /onboarding"
+  // ci-dessous avant même d'atteindre /admin. La garde d'accès réelle
+  // (is_super_admin) est faite par app/(admin)/admin/layout.tsx.
+  if (isAdminPath) {
     return supabaseResponse;
   }
 

@@ -52,7 +52,7 @@ export function Topbar({
         />
         <SheetContent side="left" className="w-64 p-0">
           <SheetHeader className="border-b border-border">
-            <SheetTitle>Oumra CRM</SheetTitle>
+            <SheetTitle>Tayssir</SheetTitle>
           </SheetHeader>
           <div className="p-3">
             <SidebarNav />

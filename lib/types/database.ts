@@ -1,6 +1,6 @@
 // Types manuels reflétant supabase/migrations/0001_init_schema.sql, 0002_payments.sql,
 // 0004_documents.sql, 0005_rooms.sql, 0006_flights.sql, 0007_guides.sql, 0008_crm.sql,
-// 0009_accounting.sql et 0010_pilgrim_portal.sql.
+// 0009_accounting.sql, 0010_pilgrim_portal.sql et 0011_super_admin_pricing.sql.
 // Pas de CLI Supabase disponible dans cet environnement pour `supabase gen types` :
 // à resynchroniser à la main si le schéma évolue (ou régénérer via la CLI plus tard).
 
@@ -73,6 +73,7 @@ export interface Database {
           role: UserRole;
           full_name: string | null;
           avatar_url: string | null;
+          is_super_admin: boolean;
           created_at: string;
         };
         Insert: Partial<Database["public"]["Tables"]["profiles"]["Row"]> & {
@@ -510,6 +511,34 @@ export interface Database {
           },
         ];
       };
+      pricing_plans: {
+        Row: {
+          id: string;
+          slug: string;
+          name: string;
+          description: string | null;
+          price_monthly: number | null;
+          price_yearly: number | null;
+          currency: string;
+          is_custom_pricing: boolean;
+          features: string[];
+          cta_label: string;
+          is_popular: boolean;
+          has_free_trial: boolean;
+          trial_days: number | null;
+          color: string | null;
+          display_order: number;
+          is_published: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: Partial<Database["public"]["Tables"]["pricing_plans"]["Row"]> & {
+          slug: string;
+          name: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["pricing_plans"]["Row"]>;
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: {
@@ -528,6 +557,10 @@ export interface Database {
       get_portal_invite_pilgrim_name: {
         Args: { p_token: string };
         Returns: { first_name: string; email: string | null }[];
+      };
+      is_super_admin: {
+        Args: Record<string, never>;
+        Returns: boolean;
       };
     };
     Enums: {

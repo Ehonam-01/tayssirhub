@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Oumra CRM — Gestion d'agence Hajj & Oumra",
+  title: "Tayssir — La gestion du pèlerinage, simplifiée",
   description:
-    "La plateforme SaaS qui remplace Excel, le papier et WhatsApp pour la gestion des agences de Hajj et Oumra.",
+    "Tayssir est la plateforme SaaS qui remplace Excel, le papier et WhatsApp pour la gestion des agences de Hajj, Oumra et voyages religieux.",
 };
 
 export default function RootLayout({

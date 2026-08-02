@@ -1,6 +1,7 @@
-# Oumra CRM
+# Tayssir
 
-SaaS de gestion d'agence de Hajj & Oumra — fondations (auth multi-tenant, campagnes, pèlerins).
+SaaS de gestion d'agence de Hajj, Oumra et voyages religieux — "Tayssir" (faciliter, simplifier) :
+la gestion du pèlerinage, simplifiée.
 
 ## Stack
 
@@ -51,7 +52,8 @@ Ouvrez [http://localhost:3000](http://localhost:3000) : vous serez redirigé ver
   disponible dans cet environnement pour `supabase gen types`). À resynchroniser manuellement si
   le schéma évolue.
 
-## Prochaines étapes (hors périmètre de cette phase)
+## Modules livrés
 
-Paiements (Stripe, Mobile Money), documents, chambres, vols, guides, CRM prospection,
-comptabilité — voir le plan produit complet.
+Campagnes, pèlerins, paiements, documents, chambres, vols, guides, CRM, comptabilité, rapports
+(export CSV/Excel/PDF), notifications, portail pèlerin (accès lecture seule par lien magique),
+landing page publique et espace Super Admin (tarification).

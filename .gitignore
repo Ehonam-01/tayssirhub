@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# état local Claude Code (verrous de session, pas du code projet)
+.claude/
