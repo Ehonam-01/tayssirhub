@@ -60,7 +60,11 @@ export function WhyTayssir() {
 
       <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {BENEFITS.map((benefit, i) => (
-          <FadeIn key={benefit.title} delay={(i % 4) * 0.05} className="flex flex-col gap-2.5 rounded-xl p-4">
+          <FadeIn
+            key={benefit.title}
+            delay={(i % 4) * 0.05}
+            className="flex flex-col items-center gap-2.5 rounded-xl p-4 text-center sm:items-start sm:text-left"
+          >
             <benefit.icon className="size-5 text-gold" />
             <h3 className="text-sm font-semibold">{benefit.title}</h3>
             <p className="text-xs text-muted-foreground">{benefit.description}</p>

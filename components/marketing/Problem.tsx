@@ -47,10 +47,10 @@ export function Problem() {
         </p>
       </FadeIn>
 
-      <div className="mt-14 grid gap-4 text-left sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-14 grid gap-4 text-center sm:grid-cols-2 sm:text-left lg:grid-cols-3">
         {PAINS.map((pain, i) => (
           <FadeIn key={pain.title} delay={i * 0.05}>
-            <div className="flex h-full flex-col gap-3 rounded-2xl bg-card p-5 ring-1 ring-foreground/10">
+            <div className="flex h-full flex-col items-center gap-3 rounded-2xl bg-card p-5 ring-1 ring-foreground/10 sm:items-start">
               <span className="flex size-9 items-center justify-center rounded-lg bg-destructive/10 text-destructive">
                 <pain.icon className="size-4.5" />
               </span>

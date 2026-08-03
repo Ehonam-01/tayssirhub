@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Sparkles, Users, Wallet, CalendarCheck } from "lucide-react";
@@ -7,12 +8,6 @@ import { buttonVariants } from "@/components/ui/button";
 import { GeometricPattern } from "@/components/marketing/geometric-pattern";
 import { cn } from "@/lib/utils";
 
-// Pas de photo de la Kaaba/Mecque disponible dans cet environnement : le clin
-// d'œil spirituel passe par un dégradé doré (lumière du Haram au crépuscule)
-// + motif géométrique islamique, plutôt qu'une photo générique de banque
-// d'images. Le mockup ci-dessous est une vraie recréation simplifiée du
-// dashboard Tayssir (mêmes couleurs/composants que l'app), pas une capture
-// inventée.
 export function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-border bg-secondary/40 dark:bg-background">
@@ -26,7 +21,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex flex-col items-start gap-6"
+          className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left"
         >
           <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-foreground ring-1 ring-gold/30">
             <Sparkles className="size-3.5" />
@@ -43,7 +38,7 @@ export function Hero() {
             et plus de temps auprès de vos voyageurs.
           </p>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-start">
             <Link href="/signup" className={cn(buttonVariants({ size: "lg" }), "h-12 px-7 text-base")}>
               Demander une démonstration
             </Link>
@@ -62,44 +57,45 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
           className="relative"
         >
-          <div className="overflow-hidden rounded-2xl bg-card shadow-2xl shadow-primary/10 ring-1 ring-foreground/10">
-            <div className="flex items-center gap-1.5 border-b border-border bg-muted/50 px-4 py-2.5">
-              <span className="size-2.5 rounded-full bg-destructive/40" />
-              <span className="size-2.5 rounded-full bg-gold/50" />
-              <span className="size-2.5 rounded-full bg-emerald-500/40" />
-            </div>
-            <div className="flex flex-col gap-3 p-5">
-              <div className="grid grid-cols-3 gap-3">
-                {[
-                  { icon: Users, label: "Pèlerins", value: "482" },
-                  { icon: CalendarCheck, label: "Départs actifs", value: "6" },
-                  { icon: Wallet, label: "Paiements reçus", value: "128 400 €" },
-                ].map((stat) => (
-                  <div key={stat.label} className="rounded-xl bg-secondary/60 p-3 dark:bg-muted/40">
-                    <stat.icon className="size-4 text-gold" />
-                    <p className="mt-2 text-lg font-semibold">{stat.value}</p>
-                    <p className="text-xs text-muted-foreground">{stat.label}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="flex flex-col gap-2 rounded-xl bg-secondary/60 p-3 dark:bg-muted/40">
-                {["Groupe Hajj — Août 2026", "Groupe Oumra — Ramadan 2026", "Groupe Oumra — Décembre 2026"].map(
-                  (label, i) => (
-                    <div key={label} className="flex items-center justify-between rounded-lg bg-card px-3 py-2 text-sm">
-                      <span className="font-medium">{label}</span>
-                      <span className="rounded-full bg-gold/15 px-2 py-0.5 text-xs font-medium text-gold">
-                        {i === 0 ? "Complet" : "Ouvert"}
-                      </span>
-                    </div>
-                  ),
-                )}
-              </div>
-            </div>
+          <div className="overflow-hidden rounded-2xl shadow-2xl shadow-primary/15 ring-1 ring-foreground/10">
+            <Image
+              src="/pelerin.png"
+              alt="Pèlerins en route vers la Kaaba à La Mecque, avec bus, avion et passeports"
+              width={1672}
+              height={941}
+              priority
+              className="h-auto w-full object-cover"
+            />
           </div>
 
-          <div className="absolute -bottom-6 -left-6 hidden w-44 rounded-xl bg-card p-3 shadow-xl ring-1 ring-foreground/10 sm:block">
+          {/* Reliquat, en incrustation en haut à droite de la photo */}
+          <div className="absolute -top-5 right-2 hidden w-40 rounded-xl bg-card p-3 shadow-xl ring-1 ring-foreground/10 sm:block">
             <p className="text-xs text-muted-foreground">Reliquat à recevoir</p>
             <p className="font-heading text-xl font-semibold text-gold">18 250 €</p>
+          </div>
+
+          {/* Aperçu du vrai dashboard Tayssir, en incrustation en bas à gauche
+              de la photo — mêmes couleurs/composants que l'app, pas une
+              capture inventée. */}
+          <div className="absolute -bottom-6 -left-6 hidden w-56 overflow-hidden rounded-xl bg-card shadow-2xl shadow-primary/15 ring-1 ring-foreground/10 sm:block">
+            <div className="flex items-center gap-1.5 border-b border-border bg-muted/50 px-3 py-2">
+              <span className="size-2 rounded-full bg-destructive/40" />
+              <span className="size-2 rounded-full bg-gold/50" />
+              <span className="size-2 rounded-full bg-emerald-500/40" />
+            </div>
+            <div className="grid grid-cols-3 gap-2 p-3">
+              {[
+                { icon: Users, label: "Pèlerins", value: "482" },
+                { icon: CalendarCheck, label: "Départs", value: "6" },
+                { icon: Wallet, label: "Paiements", value: "128 400 €" },
+              ].map((stat) => (
+                <div key={stat.label} className="rounded-lg bg-secondary/60 p-2 dark:bg-muted/40">
+                  <stat.icon className="size-3.5 text-gold" />
+                  <p className="mt-1 text-sm font-semibold">{stat.value}</p>
+                  <p className="text-[0.6rem] text-muted-foreground">{stat.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

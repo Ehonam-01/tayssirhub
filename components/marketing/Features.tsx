@@ -96,13 +96,13 @@ export function Features() {
         {FLAGSHIP.map((feature, i) => (
           <FadeIn key={feature.title} delay={(i % 4) * 0.05}>
             <Card className="h-full transition-shadow hover:shadow-lg hover:shadow-primary/5">
-              <CardContent className="flex h-full flex-col gap-3">
+              <CardContent className="flex h-full flex-col items-center gap-3 text-center sm:items-start sm:text-left">
                 <span className="flex size-10 items-center justify-center rounded-lg bg-accent text-accent-foreground">
                   <feature.icon className="size-5" />
                 </span>
                 <h3 className="font-heading text-base font-semibold">{feature.title}</h3>
                 <p className="text-sm text-muted-foreground">{feature.description}</p>
-                <ul className="mt-auto flex flex-col gap-1.5 pt-2">
+                <ul className="mt-auto flex flex-col items-center gap-1.5 pt-2 sm:items-start">
                   {feature.points.map((point) => (
                     <li key={point} className="text-xs text-muted-foreground">
                       · {point}

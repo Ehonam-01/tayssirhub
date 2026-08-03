@@ -66,7 +66,7 @@ export function PricingCards({ plans }: { plans: PricingPlan[] }) {
             <FadeIn key={plan.id} delay={i * 0.08}>
               <div
                 className={cn(
-                  "flex h-full flex-col gap-6 rounded-2xl p-6",
+                  "flex h-full flex-col items-center gap-6 rounded-2xl p-6 text-center sm:items-start sm:text-left",
                   plan.is_popular
                     ? "bg-primary text-primary-foreground ring-2 ring-gold"
                     : "bg-card ring-1 ring-foreground/10",
@@ -123,7 +123,7 @@ export function PricingCards({ plans }: { plans: PricingPlan[] }) {
                   )}
                 </div>
 
-                <ul className="flex flex-1 flex-col gap-2.5">
+                <ul className="flex flex-1 flex-col items-center gap-2.5 sm:items-start">
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-2 text-sm">
                       <Check className="mt-0.5 size-4 shrink-0 text-gold" />

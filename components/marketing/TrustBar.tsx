@@ -20,7 +20,7 @@ export function TrustBar() {
     <section className="border-b border-border bg-background">
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 py-8 sm:px-6 lg:grid-cols-4">
         {ITEMS.map((item) => (
-          <div key={item.label} className="flex items-center gap-3">
+          <div key={item.label} className="flex flex-col items-center gap-2 text-center sm:flex-row sm:text-left">
             <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent text-accent-foreground">
               <item.icon className="size-4.5" />
             </span>
