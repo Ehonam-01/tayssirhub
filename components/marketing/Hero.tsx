@@ -59,10 +59,10 @@ export function Hero() {
         >
           <div className="overflow-hidden rounded-2xl shadow-2xl shadow-primary/15 ring-1 ring-foreground/10">
             <Image
-              src="/pelerin.png"
+              src="/pelerin.jpg"
               alt="Pèlerins en route vers la Kaaba à La Mecque, avec bus, avion et passeports"
-              width={1672}
-              height={941}
+              width={1400}
+              height={788}
               priority
               className="h-auto w-full object-cover"
             />
