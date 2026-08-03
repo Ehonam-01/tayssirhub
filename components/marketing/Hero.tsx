@@ -21,7 +21,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left"
+          className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left"
         >
           <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-foreground ring-1 ring-gold/30">
             <Sparkles className="size-3.5" />
@@ -38,7 +38,7 @@ export function Hero() {
             et plus de temps auprès de vos voyageurs.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-start">
+          <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-start">
             <Link href="/signup" className={cn(buttonVariants({ size: "lg" }), "h-12 px-7 text-base")}>
               Demander une démonstration
             </Link>

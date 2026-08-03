@@ -21,7 +21,7 @@ export function Navbar() {
           <span className="font-heading text-base font-semibold">Tayssir</span>
         </Link>
 
-        <nav className="hidden items-center gap-7 md:flex">
+        <nav className="hidden items-center gap-7 lg:flex">
           {LINKS.map((link) => (
             <a
               key={link.href}
@@ -36,7 +36,7 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <Link
             href="/login"
-            className="hidden text-sm font-medium text-muted-foreground hover:text-foreground sm:inline"
+            className="hidden text-sm font-medium text-muted-foreground hover:text-foreground lg:inline"
           >
             Connexion
           </Link>
