@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -94,14 +95,16 @@ export function Topbar({
           }
         />
         <DropdownMenuContent align="end">
-          <DropdownMenuLabel>
-            <div className="flex flex-col gap-0.5">
-              <span className="font-medium text-foreground">{fullName ?? "Mon compte"}</span>
-              <span className="text-xs text-muted-foreground">
-                {ROLE_LABELS[role] ?? role}
-              </span>
-            </div>
-          </DropdownMenuLabel>
+          <DropdownMenuGroup>
+            <DropdownMenuLabel>
+              <div className="flex flex-col gap-0.5">
+                <span className="font-medium text-foreground">{fullName ?? "Mon compte"}</span>
+                <span className="text-xs text-muted-foreground">
+                  {ROLE_LABELS[role] ?? role}
+                </span>
+              </div>
+            </DropdownMenuLabel>
+          </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem disabled>
             <User className="mr-1" /> Mon profil
