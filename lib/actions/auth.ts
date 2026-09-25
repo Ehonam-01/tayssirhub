@@ -44,7 +44,10 @@ export async function signup(_prevState: ActionState, formData: FormData): Promi
   });
 
   if (error) {
-    return { error: error.message === "User already registered" ? "Un compte existe déjà avec cet email." : "Impossible de créer le compte. Réessayez." };
+    // Visible dans les logs Vercel (Functions) : indispensable pour
+    // diagnostiquer les échecs non mappés ci-dessous.
+    console.error("[signup] Supabase auth error", { code: error.code, status: error.status, message: error.message });
+    return { error: signupErrorMessage(error.code, error.message) };
   }
 
   if (data.session) {
@@ -54,6 +57,29 @@ export async function signup(_prevState: ActionState, formData: FormData): Promi
   return {
     message: "Compte créé. Vérifiez votre boîte mail pour confirmer votre adresse, puis connectez-vous.",
   };
+}
+
+function signupErrorMessage(code: string | undefined, message: string): string {
+  switch (code) {
+    case "user_already_exists":
+    case "email_exists":
+      return "Un compte existe déjà avec cet email.";
+    case "over_email_send_rate_limit":
+    case "over_request_rate_limit":
+      return "Trop de tentatives d'inscription. Patientez quelques minutes puis réessayez.";
+    case "email_address_invalid":
+      return "Cette adresse email n'est pas acceptée. Utilisez une autre adresse.";
+    case "weak_password":
+      return "Mot de passe trop faible. Choisissez-en un plus long ou plus complexe.";
+    case "signup_disabled":
+    case "email_provider_disabled":
+      return "Les inscriptions sont temporairement fermées.";
+  }
+  if (message === "User already registered") return "Un compte existe déjà avec cet email.";
+  if (/sending confirmation email/i.test(message)) {
+    return "Le compte n'a pas pu être créé : l'email de confirmation n'a pas pu être envoyé. Réessayez plus tard.";
+  }
+  return "Impossible de créer le compte. Réessayez.";
 }
 
 export async function logout() {
